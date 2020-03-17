@@ -1,15 +1,19 @@
 const express = require('express');
-const knex = require('knex');
+// const knex = require('knex');
 
-const db = knex({
-  client: 'sqlite3',
-  connection: {
-    filename: './data/produce.db3'
-  },
-  useNullAsDefault: true
-});
+const db = require('../data/connection');
 
 const router = express.Router();
+
+// const knexConfig = {
+//   client: 'sqlite3',//db driver
+//   connection: {//could be an object or string
+//     filename: './data/produce.db3'
+//   },
+//   useNullAsDefault: true//needed for SQLite
+// };
+
+// const db = knex(knexConfig);//db represents a live connection to the database
 
 router.get('/', (req, res) => {
   db('fruits')
